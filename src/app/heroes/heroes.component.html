@@ -1,33 +1,27 @@
 <h2>My Heroes:</h2>
-<!-- <ul class="heroes">
-  <li *ngFor="let hero of heroes">
-    <a routerLink="/detail/{{ hero.id }}">
-      <span class="badge">{{ hero.id }}</span> {{ hero.name }}
-    </a>
-    <button class="delete" title="delete hero" (click)="delete(hero)">x</button>
-  </li>
-</ul> -->
-<div
-  (touchstart)="handleStart($event)"
-  (touchmove)="handleTouchMove($event)"
-  (touchend)="handleEnd($event)"
-  class="item swipe"
-  *ngFor="let hero of heroes"
->
-  <button class="config" (click)="details(hero.id)">
-    <div class="con-icon">
-      <i class="bx bx-cog"></i>
+<div style="margin: 0 2em;">
+  <div
+    (touchstart)="handleStart($event)"
+    (touchmove)="handleTouchMove($event)"
+    (touchend)="handleEnd($event)"
+    class="item swipe"
+    *ngFor="let hero of heroes"
+  >
+    <button class="config" (click)="details(hero.id)">
+      <div class="con-icon">
+        <i class="bx bx-cog"></i>
+      </div>
+    </button>
+    <div class="con-text">
+      <p>{{ hero.id }}</p>
+      <h3>{{ hero.name }}</h3>
     </div>
-  </button>
-  <div class="con-text">
-    <p>{{ hero.id }}</p>
-    <h3>{{ hero.name }}</h3>
+    <button class="remove" (click)="delete(hero)">
+      <div class="con-icon">
+        <i class="bx bxs-trash"></i>
+      </div>
+    </button>
   </div>
-  <button class="remove" (click)="delete(hero)">
-    <div class="con-icon">
-      <i class="bx bxs-trash"></i>
-    </div>
-  </button>
 </div>
 <div>
   <label
