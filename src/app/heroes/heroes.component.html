@@ -14,7 +14,7 @@
   class="item swipe"
   *ngFor="let hero of heroes"
 >
-  <button class="config">
+  <button class="config" (click)="details(hero.id)">
     <div class="con-icon">
       <i class="bx bx-cog"></i>
     </div>
@@ -23,7 +23,7 @@
     <p>{{ hero.id }}</p>
     <h3>{{ hero.name }}</h3>
   </div>
-  <button class="remove">
+  <button class="remove" (click)="delete(hero)">
     <div class="con-icon">
       <i class="bx bxs-trash"></i>
     </div>

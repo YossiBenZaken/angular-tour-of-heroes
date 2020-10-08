@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
 import { MessageService } from '../message.service';
@@ -11,7 +12,7 @@ declare const anime;
 export class HeroesComponent implements OnInit {
   heroes: Hero[];
   selectedHero: Hero;
-  constructor(private _hero: HeroService, private _message: MessageService) {}
+  constructor(private _hero: HeroService, private _router: Router) {}
 
   ngOnInit(): void {
     this.getHeroes();
@@ -77,5 +78,8 @@ export class HeroesComponent implements OnInit {
         translateX: -Number(evt.target.dataset.move),
       });
     }, 1);
+  }
+  details(hero: number): void {
+    this._router.navigateByUrl(`detail/${hero}`);
   }
 }
