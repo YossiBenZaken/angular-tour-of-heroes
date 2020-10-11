@@ -1,24 +1,58 @@
 /* HeroesComponent's private CSS styles */
-.item {
-  display:flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  position: relative;
-  border-radius: 25px;
-  height: 90px;
-  margin-bottom: 10px;
-  button {
-    width: 50%;
-    border:0;
-    font-size: 1.5rem;
-    display: flex;
+@media(max-width:700px) {
+  .item {
+    display:flex;
     align-items: center;
-    justify-content: flex-start;
-    padding:0;
-    border-radius: inherit;
-    position: absolute;
-    height:90px;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+    border-radius: 25px;
+    height: 90px;
+    margin-bottom: 10px;
+    button {
+      width: 50%;
+      border:0;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding:0;
+      border-radius: inherit;
+      position: absolute;
+      height:90px;
+      outline: none;
+    }
+  }
+}
+@media(min-width:700px) {
+  .d-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .item {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    width: 500px;
+    position: relative;
+    border-radius: 25px;
+    height: 90px;
+    margin-bottom: 10px;
+    button {
+      width: 50%;
+      border:0;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding:0;
+      border-radius: inherit;
+      position: absolute;
+      height:90px;
+      outline: none;
+    }
   }
 }
 .con-text {

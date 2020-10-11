@@ -1,5 +1,13 @@
-<h2>My Heroes:</h2>
-<div style="margin: 0 2em;">
+<div class="d-flex">
+  <h2>My Heroes:</h2>
+    <div>
+      <label
+        >Hero name:
+        <input #heroName />
+      </label>
+      <button (click)="add(heroName.value); heroName.value = ''">add</button>
+    </div>
+<div style="margin: 0 2em">
   <div
     (touchstart)="handleStart($event)"
     (touchmove)="handleTouchMove($event)"
@@ -15,7 +23,7 @@
         <i class="bx bx-cog"></i>
       </div>
     </button>
-    <div class="con-text">
+    <div class="con-text" draggable="true">
       <p>{{ hero.id }}</p>
       <h3>{{ hero.name }}</h3>
     </div>
@@ -26,11 +34,4 @@
     </button>
   </div>
 </div>
-<div>
-  <label
-    >Hero name:
-    <input #heroName />
-  </label>
-  <!-- (click) passes input value to add() and then clears the input -->
-  <button (click)="add(heroName.value); heroName.value = ''">add</button>
 </div>

@@ -33,11 +33,11 @@ export class HeroesComponent implements OnInit {
     this.heroes = this.heroes.filter((h) => h !== hero);
     this._hero.deleteHero(hero).subscribe();
   }
-  handleStart(evt: any) {
+  handleStart(evt: any): void {
     evt.target.dataset.x =
       Number(evt.touches[0].pageX) + Number(evt.target.dataset.move || 0);
   }
-  handleTouchMove(evt: any) {
+  handleTouchMove(evt: any): void {
     let moveX = Number(evt.target.dataset.x) - evt.touches[0].pageX;
     if (moveX > 130) {
       moveX = 130;
@@ -52,7 +52,7 @@ export class HeroesComponent implements OnInit {
       duration: 300,
     });
   }
-  handleEnd(evt: any) {
+  handleEnd(evt: any): void {
     if (evt.target.dataset.move > 100) {
       evt.target.dataset.move = 100;
     } else if (evt.target.dataset.move < -100) {
@@ -82,26 +82,28 @@ export class HeroesComponent implements OnInit {
   details(hero: number): void {
     this._router.navigateByUrl(`detail/${hero}`);
   }
-  dragStart(evt:any): void {
-    evt.target.dataset.x = Number(evt.pageX) + Number(evt.target.dataset.move || 0);
-   // console.log(evt)
+  dragStart(evt: any): void {
+    evt.target.dataset.x =
+      Number(evt.pageX) + Number(evt.target.dataset.move || 0);
   }
-  drag(evt:any) {
-    let moveX = Number(evt.target.dataset.x) - evt.pageX;
-    if (moveX > 130) {
-      moveX = 130;
+  drag(evt: any): void {
+    if (evt.pageX !== 0) {
+      let moveX = Number(evt.target.dataset.x) - evt.pageX;
+      if (moveX > 130) {
+        moveX = 130;
+      }
+      if (moveX < -130) {
+        moveX = -130;
+      }
+      evt.target.dataset.move = moveX;
+      anime({
+        targets: evt.target,
+        translateX: -Number(evt.target.dataset.move),
+        duration: 300,
+      });
     }
-    if (moveX < -130) {
-      moveX = -130;
-    }
-    evt.target.dataset.move = moveX;
-    anime({
-      targets: evt.target,
-      translateX: -Number(evt.target.dataset.move),
-      duration: 300,
-    });
   }
-  dragEnd(evt:any) {
+  dragEnd(evt: any): void {
     if (evt.target.dataset.move > 100) {
       evt.target.dataset.move = -100;
     } else if (evt.target.dataset.move < -100) {
@@ -124,7 +126,7 @@ export class HeroesComponent implements OnInit {
     setTimeout(() => {
       anime({
         targets: evt.target,
-        translateX: -Number(evt.target.dataset.move),
+        translateX: Number(evt.target.dataset.move),
       });
     }, 1);
   }
