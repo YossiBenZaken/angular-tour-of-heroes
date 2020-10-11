@@ -4,6 +4,9 @@
     (touchstart)="handleStart($event)"
     (touchmove)="handleTouchMove($event)"
     (touchend)="handleEnd($event)"
+    (dragstart)="dragStart($event)"
+    (drag)="drag($event)"
+    (dragend)="dragEnd($event)"
     class="item swipe"
     *ngFor="let hero of heroes"
   >
