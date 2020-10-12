@@ -6,7 +6,43 @@ import { MessageService } from '../message.service';
 declare const anime;
 @Component({
   selector: 'app-heroes',
-  templateUrl: './heroes.component.html',
+  template: `<div class="d-flex">
+    <h2>My Heroes:</h2>
+    <div>
+      <label
+        >Hero name:
+        <input #heroName />
+      </label>
+      <button (click)="add(heroName.value); heroName.value = ''">add</button>
+    </div>
+    <div style="margin: 0 2em">
+      <div
+        (touchstart)="handleStart($event)"
+        (touchmove)="handleTouchMove($event)"
+        (touchend)="handleEnd($event)"
+        (dragstart)="dragStart($event)"
+        (drag)="drag($event)"
+        (dragend)="dragEnd($event)"
+        class="item swipe"
+        *ngFor="let hero of heroes"
+      >
+        <button class="config" (click)="details(hero.id)">
+          <div class="con-icon">
+            <i class="bx bx-cog"></i>
+          </div>
+        </button>
+        <div class="con-text" draggable="true">
+          <p>{{ hero.id }}</p>
+          <h3>{{ hero.name }}</h3>
+        </div>
+        <button class="remove" (click)="delete(hero)">
+          <div class="con-icon">
+            <i class="bx bxs-trash"></i>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div> `,
   styleUrls: ['./heroes.component.scss'],
 })
 export class HeroesComponent implements OnInit {

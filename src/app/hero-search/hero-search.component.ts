@@ -6,7 +6,39 @@ import { HeroService } from '../hero.service';
 
 @Component({
   selector: 'app-hero-search',
-  templateUrl: './hero-search.component.html',
+  template: `<div id="search-component">
+  <div #conSearch class="con-search notValue">
+    <div class="con-input">
+      <input
+        #searchBox
+        (blur)="handleBlur()"
+        (focus)="handleFocus(searchBox)"
+        placeholder="Search User"
+        (input)="search(searchBox.value)"
+        type="text"
+      />
+      <i class="bx bx-search"></i>
+      <i class="bx bx-x" (click)="handleRemove()"></i>
+    </div>
+    <div class="content-results">
+      <div class="con-results" *ngIf="(heroes$ | async)?.length > 0">
+        <div
+          *ngFor="let hero of heroes$ | async"
+          class="result"
+          routerLink="/detail/{{ hero.id }}"
+        >
+          <h5>
+            {{ hero.name }}
+          </h5>
+        </div>
+      </div>
+      <div class="not-results" *ngIf="(heroes$ | async)?.length == 0">
+        Not Results
+      </div>
+    </div>
+  </div>
+</div>
+`,
   styleUrls: ['./hero-search.component.scss'],
 })
 export class HeroSearchComponent implements OnInit {
